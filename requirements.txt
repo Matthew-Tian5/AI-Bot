@@ -3,5 +3,6 @@ wikipedia
 langchain-community
 langchain-openai
 langchain-anthropic
+google-generativeai
 python-dotenv
 pydantic
