@@ -50,5 +50,27 @@ raw_response = agent_executor.invoke({"query": query})
 try:
     structured_response = parser.parse(raw_response.get("output")[0]["text"])
     print(structured_response)
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(f"""
+    <html>
+    <head>
+        <title>Research Output</title>
+    </head>
+    <body>
+        <h1>Topic: {structured_response.topic}</h1>
+        <h2>Summary</h2>
+        <p>{structured_response.summary}</p>
+        <h3>Sources</h3>
+        <ul>
+            {''.join(f'<li>{src}</li>' for src in structured_response.sources)}
+        </ul>
+        <h3>Tools Used</h3>
+        <ul>
+            {''.join(f'<li>{tool}</li>' for tool in structured_response.tools_used)}
+        </ul>
+    </body>
+    </html>
+    """)
+
 except Exception as e:
     print("Error parsing response", e, "Raw Response - ", raw_response)
