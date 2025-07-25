@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Assistant</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        #results { margin-top: 30px; }
+        #conversation { max-width: 600px; margin: 0 auto; }
+        .block { background: #f7f7f7; margin: 10px 0; padding: 10px; border-radius: 6px; }
+        .user { color: #333; font-weight: bold; }
+        .assistant { color: #222; }
     </style>
 </head>
 <body>
     <h1>Research Assistant</h1>
+    <div id="conversation"></div>
     <form id="researchForm">
-        <label for="query">What can I help you research?</label><br>
-        <input type="text" id="query" name="query" style="width:300px">
+        <input type="text" id="query" placeholder="Ask me anything..." autocomplete="off" required>
         <button type="submit">Submit</button>
     </form>
-    <div id="results"></div>
-    <script src="main.js"></script>
 </body>
+<script src="main.js"></script>
 </html>

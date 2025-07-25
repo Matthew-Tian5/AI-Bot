@@ -1,22 +1,20 @@
 from flask import Flask, request, jsonify
-from your_agent_module import agent_executor, parser  # Adjust import paths as needed
+from flask_cors import CORS
+from main import run_research  # Import the function
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/research', methods=['POST'])
+@app.route('/research', methods=['GET', 'POST'])
 def research():
-    query = request.json.get('query')
-    if not query:
-        return jsonify({"error": "No query provided"}), 400
-    try:
-        raw_response = agent_executor.invoke({"query": query})
-        # Debug: print raw_response to console
-        print("Raw response:", raw_response)
-        structured_response = parser.parse(raw_response.get("output")[0]["text"])
-        return jsonify(structured_response.dict())
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"error": str(e)}), 500
+    if request.method == 'POST':
+        query = request.json.get('query')
+        if not query:
+            return jsonify({"error": "No query provided"}), 400
+        result = run_research(query)
+        return jsonify(result)
+    else:
+        return jsonify({"message": "Send a POST request with your query."})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5500)

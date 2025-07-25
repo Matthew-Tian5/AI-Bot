@@ -1,9 +1,10 @@
 langchain 
 wikipedia 
 langchain-community 
-langchain-openai
 langchain-anthropic
 python-dotenv
 pydantic
 duckduckgo-search
-flask
+Flask
+Flask-Cors
+python3.12
