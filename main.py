@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+'''from dotenv import load_dotenv
 from pydantic import BaseModel
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
@@ -55,3 +55,4 @@ def run_research(query: str) -> dict:
             "sources": [],
             "tools_used": []
         }
+'''

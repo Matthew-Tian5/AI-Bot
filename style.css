@@ -1,0 +1,30 @@
+
+#researchForm {
+max-width: 600px;
+margin: 20px auto;
+padding: 10px;
+}
+
+#query {
+width: 100%;
+padding: 15px;
+font-size: 18px;
+border: 2px solid #ddd;
+border-radius: 6px;
+box-sizing: border-box;
+}
+
+#researchForm button {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 15px 25px;
+font-size: 18px;
+border-radius: 6px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+#researchForm button:hover {
+background-color: #45a049;
+}

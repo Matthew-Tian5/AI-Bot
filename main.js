@@ -1,4 +1,5 @@
 document.getElementById('researchForm').addEventListener('submit', async function(e) {
+    console.log("main.js loaded!");
     e.preventDefault();
     const query = document.getElementById('query').value.trim();
     if (!query) return;
