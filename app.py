@@ -157,6 +157,7 @@ def lambda_handler(event, context):
             "body": json.dumps({"error": str(e)}),
             "headers": {"Content-Type": "application/json"}
         }
+
     
     import os
 from io import StringIO
