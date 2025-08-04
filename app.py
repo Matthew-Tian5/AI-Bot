@@ -157,3 +157,34 @@ def lambda_handler(event, context):
             "body": json.dumps({"error": str(e)}),
             "headers": {"Content-Type": "application/json"}
         }
+    
+    import os
+from io import StringIO
+
+# Replace your file saving function with S3 version
+def save_to_txt(data: str, filename: str = "research_output.txt"):
+    import boto3
+    from datetime import datetime
+    
+    s3 = boto3.client('s3')
+    bucket_name = os.environ.get('S3_BUCKET_NAME')
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    formatted_text = f"--- Research Output ---\nTimestamp: {timestamp}\n\n{data}\n\n"
+    
+    try:
+        # Check if file exists and append
+        try:
+            existing = s3.get_object(Bucket=bucket_name, Key=filename)
+            existing_content = existing['Body'].read().decode('utf-8')
+            formatted_text = existing_content + formatted_text
+        except:
+            pass
+            
+        s3.put_object(
+            Bucket=bucket_name,
+            Key=filename,
+            Body=formatted_text.encode('utf-8')
+        )
+        return f"Data successfully saved to S3 ({filename})"
+    except Exception as e:
+        return f"Error saving to S3: {str(e)}"
